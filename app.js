@@ -115,5 +115,8 @@ function rgbToHex(rgb) {
 
 // Invoca tras initDragAndDrop()
 window.addEventListener('DOMContentLoaded', () => {
-  initInspector();
+  initDragAndDrop();
+  initInspector();                 // <— ¡No lo olvides!
+  console.log('Inspector listo');  // Para asegurarte que corre
 });
+
