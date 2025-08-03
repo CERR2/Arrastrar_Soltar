@@ -96,6 +96,18 @@ function initInspector() {
     });
 }
 
+function makeEditable(el) {
+  el.contentEditable = 'true';
+  el.classList.add('draggable');
+  el.setAttribute('draggable', 'true');
+
+  el.addEventListener('click', e => {
+    e.stopPropagation();             // Evita que el click caiga en canvas
+    selectElement(e.currentTarget);
+  });
+}
+
+  
 function showInspector(el) {
   inspector.classList.remove('hidden');
   const styles = window.getComputedStyle(el);
@@ -109,11 +121,60 @@ function showInspector(el) {
   fields.top.value  = Math.round(elRect.top  - canvasRect.top);
 }
 
-// Convierte "rgb(r,g,b)" a "#rrggbb"
-function rgbToHex(rgb) {
-  const [r,g,b] = rgb.match(/\d+/g).map(n => parseInt(n));
-  return '#'+[r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+function selectElement(el) {
+  selectedEl = el;
+
+  // Mostrar inspector
+  const insp = document.getElementById('inspector');
+  insp.classList.remove('hidden');
+
+  // Obtener estilos actuales
+  const style = getComputedStyle(selectedEl);
+  document.getElementById('prop-width').value      = parseInt(style.width);
+  document.getElementById('prop-height').value     = parseInt(style.height);
+  document.getElementById('prop-bg').value         = rgbToHex(style.backgroundColor);
+  document.getElementById('prop-radius').value     = parseInt(style.borderRadius) || 0;
+  document.getElementById('prop-color').value      = rgbToHex(style.color);
+  document.getElementById('prop-fontSize').value   = parseInt(style.fontSize);
 }
+
+// Convierte “rgb(r,g,b)” a “#rrggbb”
+function rgbToHex(rgb) {
+  const nums = rgb.match(/\d+/g).map(n => parseInt(n));
+  return '#' + nums.map(n => n.toString(16).padStart(2, '0')).join('');
+}
+
+function bindInspector() {
+  const mappings = [
+    ['prop-width',     'width',      v => v + 'px'],
+    ['prop-height',    'height',     v => v + 'px'],
+    ['prop-bg',        'background', v => v],
+    ['prop-radius',    'borderRadius', v => v + 'px'],
+    ['prop-color',     'color',      v => v],
+    ['prop-fontSize',  'fontSize',   v => v + 'px']
+  ];
+
+  mappings.forEach(([inputId, styleProp, format]) => {
+    const inp = document.getElementById(inputId);
+    inp.addEventListener('input', e => {
+      if (!selectedEl) return;
+      selectedEl.style[styleProp] = format(e.target.value);
+    });
+  });
+
+  // Cerrar inspector al hacer clic fuera
+  document.getElementById('canvas').addEventListener('click', () => {
+    document.getElementById('inspector').classList.add('hidden');
+    selectedEl = null;
+  });
+}
+
+// Llama a bindInspector cuando cargue DOM
+window.addEventListener('DOMContentLoaded', () => {
+  initDragAndDrop();
+  bindInspector();
+});
+
 
 // Invoca tras initDragAndDrop()
 window.addEventListener('DOMContentLoaded', () => {
@@ -121,6 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initInspector();                 // <— ¡No lo olvides!
   console.log('Inspector listo');  // Para asegurarte que corre
 });
+
 
 
 
