@@ -12,19 +12,49 @@
 <body>
   <header>
     <h1>Drag & Drop Builder</h1>
-    <button id="btnViewCode">Ver c�digo</button>
+    <button id="btnViewCode">Ver código</button>
   </header>
 
   <main>
+
+<aside id="inspector" class="hidden">
+  <h2>Propiedades</h2>
+  <label>
+    Color de fondo
+    <input type="color" id="prop-bgColor" />
+  </label>
+  <label>
+    Ancho (px)
+    <input type="number" id="prop-width" min="10" />
+  </label>
+  <label>
+    Alto (px)
+    <input type="number" id="prop-height" min="10" />
+  </label>
+  <label>
+    Radio de borde (px)
+    <input type="range" id="prop-borderRadius" min="0" max="100" />
+  </label>
+  <label>
+    Posición X (px)
+    <input type="number" id="prop-left" />
+  </label>
+  <label>
+    Posición Y (px)
+    <input type="number" id="prop-top" />
+  </label>
+</aside>
+
+    
     <aside id="sidebar">
       <h2>Componentes</h2>
-      <div class="component" draggable="true" data-type="button">Bot�n</div>
+      <div class="component" draggable="true" data-type="button">Botón</div>
       <div class="component" draggable="true" data-type="text">Texto</div>
       <div class="component" draggable="true" data-type="container">Contenedor</div>
     </aside>
 
     <section id="canvas">
-      <p class="placeholder">Arrastra componentes aqu�</p>
+      <p class="placeholder">Arrastra componentes aquí</p>
     </section>
   </main>
 
@@ -32,7 +62,8 @@
     <pre id="codeOutput" class="hidden"></pre>
   </footer>
 
-  <!-- Cargamos todo como m�dulo ES -->
+  <!-- Cargamos todo como módulo ES -->
   <script type="module" src="app.js"></script>
 </body>
+
 </html>
