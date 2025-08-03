@@ -39,6 +39,7 @@ function initInspector() {
   });
 
   // Interact.js para drag & resize
+  export function initDragAndDrop() {
   interact('.component')
     .draggable({
       modifiers: [ interact.modifiers.restrict({
@@ -119,4 +120,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initInspector();                 // <— ¡No lo olvides!
   console.log('Inspector listo');  // Para asegurarte que corre
 });
+
 
