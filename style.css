@@ -60,6 +60,24 @@ main {
   font-style: italic;
 }
 
+#canvas { position: relative; }
+
+#inspector {
+  position: fixed;
+  right: 1rem;
+  top: 4rem;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+#inspector.hidden { display: none; }
+
+.component.selected {
+  outline: 2px dashed #317EFB;
+}
+
+
 .draggable {
   position: relative;
   padding: 0.5rem;
@@ -86,3 +104,4 @@ footer {
 .hidden {
   display: none;
 }
+
