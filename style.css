@@ -79,7 +79,7 @@ main {
 
 
 .draggable {
-  position: relative;
+  position: absolute;
   padding: 0.5rem;
   margin: 0.5rem 0;
   cursor: move;
@@ -104,4 +104,5 @@ footer {
 .hidden {
   display: none;
 }
+
 
