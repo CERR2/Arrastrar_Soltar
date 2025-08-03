@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drag & Drop Builder</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#317EFB"/>
+</head>
+
+<body>
+  <header>
+    <h1>Drag & Drop Builder</h1>
+    <button id="btnViewCode">Ver código</button>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <h2>Componentes</h2>
+      <div class="component" draggable="true" data-type="button">Botón</div>
+      <div class="component" draggable="true" data-type="text">Texto</div>
+      <div class="component" draggable="true" data-type="container">Contenedor</div>
+    </aside>
+
+    <section id="canvas">
+      <p class="placeholder">Arrastra componentes aquí</p>
+    </section>
+  </main>
+
+  <footer>
+    <pre id="codeOutput" class="hidden"></pre>
+  </footer>
+
+  <!-- Cargamos todo como módulo ES -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
