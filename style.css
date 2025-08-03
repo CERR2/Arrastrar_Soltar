@@ -64,14 +64,29 @@ main {
 
 #inspector {
   position: fixed;
-  right: 1rem;
-  top: 4rem;
-  background: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
+  right: 0;
+  top: 60px;
+  width: 220px;
+  padding: 10px;
+  background: #f8f8f8;
+  border-left: 1px solid #ccc;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  font-size: 14px;
 }
 
-#inspector.hidden { display: none; }
+#inspector.hidden {
+  display: none;
+}
+
+#inspector .field {
+  margin-bottom: 8px;
+}
+
+#inspector label {
+  display: block;
+  margin-bottom: 2px;
+}
+
 
 .component.selected {
   outline: 2px dashed #317EFB;
@@ -104,5 +119,6 @@ footer {
 .hidden {
   display: none;
 }
+
 
 
